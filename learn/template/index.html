@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./js/compileOne.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <input v-model="name" />
+      {{name}}
+      <h1>{{msg}}</h1>
+      <p>{{test}}</p>
+    </div>
+    <script>
+      let dom = document.querySelector(".app");
+      let data = {
+        name: "哈哈",
+        msg: "hello world",
+        test: "adasd",
+      };
+      compile(dom, data);
+    </script>
+  </body>
+</html>
