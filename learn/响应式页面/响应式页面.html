@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>响应式页面</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #one {
+        display: inline-block;
+        width: 60%;
+        outline: 1px solid rgb(91, 91, 241);
+      }
+      #two {
+        border: 1px solid rgb(66, 171, 212);
+        outline: 1px solid rgb(91, 4, 150);
+        width: 60%;
+        caret-color: rgb(48, 185, 167);
+      }
+      span {
+        display: inline-block;
+        margin: 1% 0%;
+        background-color: rgb(214, 240, 197);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span>这是一个输入框</span><br />
+      <input type="text" id="one" /><br />
+      <span>这是一个段落</span>
+      <p id="two" contenteditable=""></p>
+      <span>他们的数据和obj.val是同步的~</span>
+    </div>
+    <script src="响应式页面.js"></script>
+  </body>
+</html>
