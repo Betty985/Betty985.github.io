@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+     
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     
+    <title>Document</title>
+  </head>
+  <body>
+     
+    <div id="app" contenteditable="true">
+          {{msg}}    
+      <input v-mode="msg" />    
+      <p>{{test}}</p>
+         
+      <h1>{{msg}}</h1>
+      <h3>{{test}}</h3>
+       
+    </div>
+     
+    <script>
+      var o = {
+        msg: "hah",
+        test: "hello world",
+      }; //todo
+      function compie() {
+        let app = document.querySelector("#app");
+        app.onmouseout = function () {
+          //   app.style.color = "red";
+          let txt = app.innerHTML;
+          let exp1 = /{{msg}}/g;
+          let exp2 = /{{test}}/g;
+          let marches1 = exp1.exec(app.innerHTML);
+          let marches2 = exp2.exec(app.innerHTML);
+
+          let newTxt = txt.replace(exp1, o.msg);
+          newTxt = newTxt.replace(exp2, o.test);
+          app.innerHTML = newTxt;
+        };
+      }
+      compie();
+    </script>
+  </body>
+</html>

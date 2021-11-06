@@ -1,0 +1,79 @@
+/* 初始化 */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.head1,
+.head2 {
+  width: 70%;
+  border: 1px solid silver;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1px auto;
+  border-radius: 4px;
+}
+.head1 {
+  font-family: 幼圆, Courier, monospace;
+  font-size: 1.6rem;
+}
+#lt,
+#gt {
+  font-size: 1.6rem;
+  cursor: pointer;
+  /* 禁止用户选中 */
+  user-select: none;
+}
+.head2 span {
+  width: 16%;
+  text-align: center;
+}
+
+#today {
+  border: 0;
+  width: 3.6rem;
+  height: 1.8rem;
+  background-color: rgba(11, 138, 11, 0.356);
+}
+.calender {
+  width: 70%;
+  /* Grid 布局 */
+  display: grid;
+  /* repeat() 函数：可以简化重复的值。该函数接受两个参数，第一个参数是重复的次数，第二个参数是所要重复的值。 */
+  grid-template-columns: repeat(7, auto);
+  grid-template-rows: repeat(5, 6.25rem);
+  margin: 1px auto;
+}
+.day {
+  display: inline-block;
+  border: 1px solid silver;
+}
+.day:nth-child(1) {
+  border-top-left-radius: 4px;
+}
+.day:nth-child(7) {
+  border-top-right-radius: 4px;
+}
+.day:nth-child(29) {
+  border-bottom-left-radius: 4px;
+}
+.day:nth-child(35) {
+  border-bottom-right-radius: 4px;
+}
+button {
+  border: 1px solid silver;
+  visibility: hidden;
+  width: 1rem;
+}
+
+.day:hover button {
+  visibility: visible;
+}
+.day:hover {
+  border: 1px solid plum;
+  box-shadow: 2px 2px 6px plum;
+}
+li {
+  display: inline;
+  float: right;
+}

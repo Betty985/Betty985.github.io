@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body {
+  background-color: #fff;
+}
+/* 为实现自适应布局，单位采用rem*/
+.control {
+  border-radius: 0.3125rem;
+  margin: 4% auto;
+  background-color: rgba(228, 223, 223, 0.849);
+  width: 25rem;
+}
+.item {
+  width: 25rem;
+  height: 3.75rem;
+  background-color: rgba(187, 183, 183, 0.74);
+  display: flex;
+  justify-content: center;
+}
+
+.i {
+  width: 12.5rem;
+  height: 3.75rem;
+  display: inline-block;
+  color: black;
+  font-size: 21px;
+  text-align: center;
+  line-height: 3.75rem;
+  cursor: pointer;
+}
+.item div.active {
+  background-color: rgba(228, 223, 223, 0.6);
+}
+.content {
+  width: 40%;
+  height: 29rem;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.c {
+  margin: 1.25rem 1.875rem;
+  justify-content: center;
+  height: 28.125rem;
+  vertical-align: middle;
+  display: none;
+}
+.c.active {
+  display: block;
+}
+p {
+  color: #4a4a4a;
+  margin-top: 1.2rem;
+  margin-bottom: 0.375rem;
+  font-size: 15px;
+  text-align: left;
+  margin-left: 2rem;
+}
+
+/* 属性选择器 */
+.content input:not(.submit) {
+  width: 16rem;
+  height: 2.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #adadad;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  margin: 0 2rem;
+}
+.content input:not(.submit):focus {
+  outline: 1px solid blueviolet;
+}
+
+.content .submit {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  border: 1px solid #adadad;
+  cursor: pointer;
+  /* letter-spacing 属性增加或减少字符间的空白（字符间距） */
+  letter-spacing: 0.3rem;
+  background-color: #0b7237;
+  margin-left: 7rem;
+}
