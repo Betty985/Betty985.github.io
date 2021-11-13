@@ -58,10 +58,10 @@
 .day:nth-child(7) {
   border-top-right-radius: 4px;
 }
-.day:nth-child(29) {
+.day:nth-child(36) {
   border-bottom-left-radius: 4px;
 }
-.day:nth-child(35) {
+.day:nth-child(42) {
   border-bottom-right-radius: 4px;
 }
 button {
