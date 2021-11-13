@@ -2,6 +2,8 @@ window.onload = function () {
   //  默认的页面
   // 头部的日期
   let cdate = document.querySelector("b");
+  // 按钮
+  let btns = document.querySelectorAll("button");
   let b = new Date();
   // getMonth方法返回的月是从0开始的，需要+1
   cdate.innerText = `${b.getFullYear()} 年${b.getMonth() + 1} 月`;
@@ -15,20 +17,20 @@ window.onload = function () {
   let m1 = expression.exec(text);
   let m2 = expression.exec(text);
   function fillNumber(a, b) {
-    console.log(a, b);
     // 当月第一天是星期几，月份从0开始，所以需要减一
     let ddate1 = new Date(a, b - 1, 1).getDay();
     // 0是周日，6是周六
     ddate1 = ddate1 == 0 ? 7 : ddate1;
     // 当月天数
     let ddate2 = new Date(a, b, 0).getDate();
-    console.log(ddate1, ddate2);
+    // console.log(ddate1, ddate2);
     // 上月天数
     let ddate3 = new Date(a, b - 1, 0).getDate();
     // console.log(`上月天数是${ddate3}`);
     for (let i = 0, j = ddate3 - ddate1 + 2; i < ddate1 - 1; i++, j++) {
       day[i].innerText = j;
       day[i].style.color = "#D3D3D3";
+      btns[i].remove();
     }
     for (let i = ddate1 - 1, j = 1; j <= ddate2; i++, j++) {
       day[i].innerText = j;
@@ -37,6 +39,7 @@ window.onload = function () {
     for (let i = ddate1 + ddate2 - 1, j = 1; i < 42; i++, j++) {
       day[i].innerText = j;
       day[i].style.color = "#D3D3D3";
+      btns[i].remove();
       // console.log(`下月日期${j}`);
     }
   }
@@ -67,5 +70,15 @@ window.onload = function () {
     }
     fillNumber(m1[0], m2[0]);
     // cdate.style.color = "green";
+  });
+  // ========================================================================
+  // 按钮功能
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // nextSibling 下一个兄弟节点    获取下一个兄弟结点的内容
+      let bday = btn.nextElementSibling.textContent;
+      let btext = document.querySelector("b").innerText;
+      console.log(`${btext} ${bday}日`);
+    });
   });
 };
