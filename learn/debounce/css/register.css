@@ -91,10 +91,14 @@ p {
 }
 .img {
   width: 100px;
-  height: 100px;
+  line-height: 100px;
+  color: #2a2a5a;
+  text-align: center;
   position: absolute;
   user-select: none;
+  z-index: -1;
   border-radius: 50%;
+  opacity: 0.6;
   background: linear-gradient(
       217deg,
       rgba(255, 0, 0, 0.8),

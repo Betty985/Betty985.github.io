@@ -37,6 +37,30 @@ let fn = (num, content) => debounce(gett(num, content), 1000);
 inp.forEach((item, index) => {
   item.addEventListener("input", fn(index, item));
 });
+
+// 为提交按钮添加节流函数
+let coms = document.querySelectorAll(".submit");
+function subme() {
+  console.log("节流");
+}
+function toggle(func, delay) {
+  let timer = null;
+  let context = this;
+  let args = arguments;
+  return function () {
+    if (timer) {
+      return "操作太快啦~";
+    }
+    timer = setTimeout(function () {
+      func.apply(context, args);
+      //没有任务或者已经执行完了
+      timer = null;
+    }, delay);
+  };
+}
+coms.forEach((item, index) => {
+  item.addEventListener("click", toggle(subme, 1000));
+});
 // ===============================================================
 // 鼠标跟随效果
 let img = document.querySelector(".img");
@@ -73,5 +97,5 @@ window.addEventListener("mousemove", function (xyz) {
     }
     img.style.left = imgl + "px";
     img.style.top = imgt + "px";
-  }, 10);
+  }, 9000);
 });
