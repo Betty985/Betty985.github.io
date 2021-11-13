@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{test}}</p>
+      <input type="text" v-model="msg" />
+      <h1>{{msg}}</h1>
+    </div>
+    <script>
+      let stack = [];
+      let weakmap = new WeakMap();
+      let config = {
+        get(obj, key) {
+          let res = obj[key];
+          track(obj, key);
+          return typeof res == "object" ? reactive(res) : res;
+        },
+        set(obj, key, val) {
+          obj[key] = val;
+          trigger(obj, key, val);
+        },
+      };
+      function reactive(obj) {
+        return new Proxy(obj, config);
+      }
+      function track(obj, key) {
+        let effect = stack[stack.length - 1];
+        if (effect) {
+          let depsMap = weakmap.get(obj);
+          if (!depsMap) {
+            depsMap = new Map();
+            weakmap.set(obj, depsMap);
+          }
+          let deps = depsMap.get(key);
+          if (!deps) {
+            deps = new Set();
+            depsMap.set(key, deps);
+          }
+          if (!deps.has(effect)) {
+            deps.add(effect);
+            effect.deps.push(effect);
+          }
+        }
+      }
+      function trigger(obj, key) {
+        let depsMap = weakmap.get(obj);
+        let computeds = new Set();
+        let effects = new Set();
+        if (key) {
+          let deps = depsMap.get(key);
+          deps.forEach((effect) => {
+            if (effect.computed) {
+              computeds.add(effect);
+            } else {
+              effects.add(effect);
+            }
+          });
+        }
+        computeds.forEach((fn) => fn());
+        effects.forEach((fn) => fn());
+      }
+      function effect(fn, op) {
+        const eff = createEffect(fn, op);
+        if (!eff.lazy) {
+          eff();
+        }
+        return eff;
+      }
+      function createEffect(fn, op = {}) {
+        const effect = function (...args) {
+          return run(effect, fn, args);
+        };
+        effect.lazy = op.lazy;
+        effect.deps = [];
+        effect.computed = op.computed;
+        return effect;
+      }
+      function run(effect, fn, args) {
+        if (stack.indexOf(effect) == -1) {
+          try {
+            stack.push(effect);
+            return fn.apply(this, args);
+          } finally {
+            stack.pop();
+          }
+        }
+      }
+      function computed(fn) {
+        let o = effect(fn, { lazy: true, computed: true });
+        return {
+          runner: o,
+          get value() {
+            return o();
+          },
+        };
+      }
+    </script>
+    <script>
+      let fn = {
+        text: function (node, val) {
+          node.textContent = state[val];
+        },
+        input: function (node, val) {
+          node.value = state[val];
+        },
+        ele: function (node, val) {},
+      };
+      function compile(el) {
+        const childNodes = el.childNodes;
+        const reg = /\{\{(.*?)\}\}/g;
+        Array.from(childNodes).forEach((node) => {
+          if (node.nodeType == 1) {
+            //元素
+            let attribute = node.attributes;
+            let value;
+            let type = "ele";
+            Array.from(attribute).forEach((attr) => {
+              let name = attr.name;
+              value = attr.value;
+              if (name.includes("v-")) {
+                //v-model
+                type = "input";
+                node.value = state[value];
+                node.addEventListener("input", (e) => {
+                  let newVal = e.target.value;
+                  state[value] = e.target.value;
+                });
+              }
+            });
+            update(node, type, value);
+          }
+          if (node.nodeType == 3 && reg.test(node.textContent)) {
+            //文本
+            let val = void 0;
+            node.textContent.replace(reg, (obj, key) => {
+              val = key;
+            });
+            update(node, "text", val);
+          }
+          if (node.childNodes && node.childNodes.length > 0) {
+            compile(node);
+          }
+        });
+      }
+      function update(node, name, value) {
+        let o = fn[name];
+        effect(() => {
+          o(node, value);
+        });
+      }
+    </script>
+    <script>
+      let el = document.querySelector("#app");
+      let state = reactive({
+        test: "hell world",
+        msg: "123",
+      });
+      compile(el);
+    </script>
+  </body>
+</html>
