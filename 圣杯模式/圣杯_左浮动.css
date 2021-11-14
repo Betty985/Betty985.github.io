@@ -1,0 +1,34 @@
+.clearfix::after {
+  content: "清除浮动";
+  display: table;
+  clear: both;
+}
+.main {
+  /* 给左右两栏留位置 */
+  padding: 0 100px;
+  overflow: hidden;
+}
+.main .left,
+.main .content,
+.main .right {
+  float: left;
+  position: relative;
+  margin-bottom: -4000px;
+  padding-bottom: 4000px;
+}
+.main .left {
+  left: -100px;
+  width: 100px;
+}
+.main .content {
+  width: 100%;
+  margin-left: -100px;
+}
+.main .right {
+  /* left 属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。
+  如果 "position" 属性的值为 "static"，
+  那么设置 "left" 属性不会产生任何效果。 */
+  left: 100px;
+  width: 100px;
+  margin-left: -100px;
+}

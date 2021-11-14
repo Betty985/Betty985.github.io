@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+}
+.main .left,
+.main .right {
+  width: 100px;
+}
+.main .content {
+  /* 单值语法: 值必须为以下其中之一:
+一个无单位数(<number>): 它会被当作flex:<number> 1 0; <flex-shrink>的值被假定为1，然后<flex-basis> 的值被假定为0。
+一个有效的宽度(width)值: 它会被当作 <flex-basis>的值。
+关键字none，auto或initial. */
+  flex: 1;
+}

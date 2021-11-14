@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>圣杯模式</title>
+    <link rel="stylesheet" type="text/css" href="圣杯_grid.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="圣杯_flex.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="圣杯_左浮动.css" /> -->
+    <style>
+      .wrap {
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #000;
+        color:silver;
+      }
+      .top,
+      .foot {
+        height: 50px;
+        background-color: #2c0347;
+      }
+      .main .left,
+      .main .right {
+        background-color: #040b4b;
+      }
+      .main .content {
+        background-color: #020003;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">top</div>
+      <div class="main clearfix">
+        <div class="left">left</div>
+        <div class="content">
+          <h1>圣杯模式</h1>
+          <p>
+            圣杯布局(双飞翼布局)<br />
+            上下两个盒子宽高固定,中间是三栏布局，左右宽度固定。中间部分自动填充整个区域.
+            高度是三栏中最高的区域的高度。
+          </p>
+          <h2>实现方式</h2>
+          <ul>
+            <li>
+              <h3>浮动</h3>
+              <p>
+                三栏设置为左浮动和相对定位。
+                左右设置定宽，中间部分设置100%撑满。
+                因为中间部分会占据整个区域，左右两栏会被挤下去。所以要在它们的父元素上设置padding给左右两栏留出空间。
+                调整margin-left属性让它们回到同一行。 left属性调整左右的位置。
+                margin-bottom为padding-bottom的负值。给内容区设置溢出隐藏。
+                ::after用来创建一个伪元素，清除浮动。
+              </p>
+            </li>
+            <li>
+              <h3>flex</h3>
+              <p>中间区域设置flex布局，中间栏设置flex：1；</p>
+            </li>
+            <li>
+              <h3>grid</h3>
+              <p>
+                中间区域设置网格布局。 display: grid; grid-template-columns:
+                100px 1fr 100px;<br />
+                &lt;flex&gt;数据类型为一
+                &lt;number&gt;后加单位fr。表示了网格（grid）容器中的一段可变长度。
+                每个定义了 <flex> 的网格轨道会按比例分配剩余的可用空间。当外层用一个 minmax() 表示时，
+                    它将是一个自动最小值(即 minmax(auto, &lt;flex&gt;) ) .
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="right">right</div>
+      </div>
+      <div class="foot">foot</div>
+    </div>
+  </body>
+</html>
