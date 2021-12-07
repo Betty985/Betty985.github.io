@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Random User Generator</title>
+	<link rel="stylesheet" href="hello.css">
+	
+</head>
+<body>
+	<div id="app">
+		<!-- Mustache 语法不能作用在 HTML attribute 上，遇到这种情况应该使用 v-bind 指令  v-bind：===： -->
+		<img :class="gender" v-bind:src="picture" :alt="`${{firstNames}} ${{lastName}}` "/>
+		<h1>{{firstName}}  {{lastName}}</h1>
+		<h3>Email: {{email}}</h3>
+		<button v-on:click="getUser()":class="gender" >Get Random User</button>
+	</div>
+
+		<script src="https://unpkg.com/vue@3.0.5"></script>
+		<script src="app.js"></script>
+</body>
+</html>
