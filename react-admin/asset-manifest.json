@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/react-admin/static/css/main.48a11010.css",
-    "main.js": "/react-admin/static/js/main.8baf5fcb.js",
+    "main.js": "/react-admin/static/js/main.6cc4e52c.js",
     "vendors.css": "/react-admin/static/css/vendors.b81ddbb6.css",
-    "vendors.js": "/react-admin/static/js/vendors.a16a1369.js",
+    "vendors.js": "/react-admin/static/js/vendors.07de9308.js",
     "index.html": "/react-admin/index.html",
     "main.48a11010.css.map": "/react-admin/static/css/main.48a11010.css.map",
-    "main.8baf5fcb.js.map": "/react-admin/static/js/main.8baf5fcb.js.map",
+    "main.6cc4e52c.js.map": "/react-admin/static/js/main.6cc4e52c.js.map",
     "vendors.b81ddbb6.css.map": "/react-admin/static/css/vendors.b81ddbb6.css.map",
-    "vendors.a16a1369.js.map": "/react-admin/static/js/vendors.a16a1369.js.map"
+    "vendors.07de9308.js.map": "/react-admin/static/js/vendors.07de9308.js.map"
   },
   "entrypoints": [
     "static/css/vendors.b81ddbb6.css",
-    "static/js/vendors.a16a1369.js",
+    "static/js/vendors.07de9308.js",
     "static/css/main.48a11010.css",
-    "static/js/main.8baf5fcb.js"
+    "static/js/main.6cc4e52c.js"
   ]
 }
